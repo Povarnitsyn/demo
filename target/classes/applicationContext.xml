@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:test.properties"/>
+<bean id="beanTest" class="com.example.demo.BeanTest" >
+
+</bean>
+    <bean id="test" class="com.example.demo.Test" scope="prototype">
+       <!--<constructor-arg ref="beanTest"></constructor-arg> -->
+        <property name="beanTest" ref="beanTest"></property>
+        <property name="number" value="${test.number}"></property>
+    </bean>
+</beans>
