@@ -1,4 +1,4 @@
-package entities;
+package com.example.demo.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +18,11 @@ public class Product {
     int price;
     int sortOrder;
     boolean active;
+
+    public Product() {
+
+    }
+
     public int getId () {
         return  id;
     }
