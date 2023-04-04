@@ -5,21 +5,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 @Entity
-public class Specification {
+public class Specifications {
 
-        public Specification(String key, int value){
-            this.key=key;
-            this.value=value;
+        public Specifications(String key1, int value){
+            this.key1=key1;
+            this.value1 =value;
         }
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         int id;
-        String key;
-        int value;
+        String key1;
+        int value1;
         int sortOrder;
         boolean active;
 
-        public Specification() {
+        public Specifications() {
 
         }
 
@@ -27,10 +27,10 @@ public class Specification {
             return  id;
         }
         public String getKey () {
-            return  key;
+            return  key1;
         }
-        public int getValue () {
-            return  value;
+        public int getValue1() {
+            return value1;
         }
         public boolean getActive () {
             return  active;

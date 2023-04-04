@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.entities.Specification;
 import com.example.demo.entities.Product;
+import com.example.demo.entities.Specifications;
 import com.example.demo.services.SpecificationRepository;
 import com.example.demo.services.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -29,16 +29,25 @@ public class DemoApplication {
 	@Bean
 	public CommandLineRunner demo(ProductRepository repository1, SpecificationRepository repository2){
 		return (args) -> {
-			repository1.save(new Product("notebook",100));
-			repository1.save(new Product("notebook2",150));
+
+			Product product1=new Product("notebook",100);
+			Product product2=new Product("notebook2",150);
+
+			repository1.save(product1);
+			repository1.save(product2);
+
+			Specifications specification1=(new Specifications("power",1000));
+			Specifications specification2=(new Specifications("size",150));
+
+			repository2.save(specification1);
+			repository2.save(specification2);
+
 			var products=repository1.findAll();
 			for (Product product:products) {
 				System.out.println(product.getName());
 			}
-			repository2.save(new Specification("power",1000));
-			repository2.save(new Specification("size",150));
 			var specifications=repository2.findAll();
-			for (Specification specification:specifications) {
+			for (Specifications specification:specifications) {
 				System.out.println(specification.getKey());
 			}
 		};

@@ -66,19 +66,9 @@
         <h2>
             Характеристики
         </h2>
-        <dl>
-            <dt>
-               длина
-            </dt>
-            <dd>
-                5
-            </dd>
-            <dt>
-                ширина
-            </dt>
-            <dd>
-                10
-            </dd>
+        <dl th:each="nameSpecifications: ${specification}">
+            <dt th:text="${specifiaction.key1}"></dt>
+            <dd th:text="${specifiaction.value1}"></dd>
         </dl>
     </section>
 </article>
