@@ -1,9 +1,9 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 @Entity
 public class Specifications {
 
@@ -18,6 +18,12 @@ public class Specifications {
         int value1;
         int sortOrder;
         boolean active;
+        @ManyToOne
+        @JoinColumn(name="productId", nullable = false)
+        Product product;
+        public Product getProduct () {
+        return  product;
+    }
 
         public Specifications() {
 

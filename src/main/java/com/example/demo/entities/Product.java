@@ -1,12 +1,17 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 
 @Entity
 public class Product {
+    public Product(String name,int price, List<Specifications> specifications){
+        this.specifications=specifications;
+        this.name=name;
+        this.price=price;
+    }
     public Product(String name,int price){
         this.name=name;
         this.price=price;
@@ -18,6 +23,11 @@ public class Product {
     int price;
     int sortOrder;
     boolean active;
+    @OneToMany(mappedBy = "product")
+    List<Specifications> specifications;
+    public List<Specifications> getSpecifications () {
+        return  specifications;
+    }
 
     public Product() {
 

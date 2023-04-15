@@ -9,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 //@RestController
 public class DemoApplication {
@@ -29,27 +32,35 @@ public class DemoApplication {
 	@Bean
 	public CommandLineRunner demo(ProductRepository repository1, SpecificationRepository repository2){
 		return (args) -> {
-
-			Product product1=new Product("notebook",100);
-			Product product2=new Product("notebook2",150);
-
-			repository1.save(product1);
-			repository1.save(product2);
+			List<Specifications> specifications = new ArrayList<>();
 
 			Specifications specification1=(new Specifications("power",1000));
 			Specifications specification2=(new Specifications("size",150));
+			specifications.add(specification1);
+			specifications.add(specification2);
+			Product product1=new Product("notebook",100,specifications);
+			Product product2=new Product("notebook2",150);
+			repository1.save(product1);
+			repository1.save(product2);
 
-			repository2.save(specification1);
-			repository2.save(specification2);
+/*			repository2.save(specification1);
+			repository2.save(specification2);*/
 
 			var products=repository1.findAll();
 			for (Product product:products) {
+				for (Specifications specification:
+					 product.getSpecifications()) {
+					System.out.println(specification.getKey());
+
+				}
 				System.out.println(product.getName());
+
 			}
-			var specifications=repository2.findAll();
+/*			var specifications=repository2.findAll();
 			for (Specifications specification:specifications) {
 				System.out.println(specification.getKey());
-			}
+
+			}*/
 		};
 
 	}
